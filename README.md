@@ -10,7 +10,9 @@ I'll stick with what I know:
 + SQLite - Metadata storage (file_hash, timestamp, filename_sequence, length)
 + Hashing - hashlib (SHA-256) for reasonable file integrity (can always migrate to more sophisticated if needed)
 + Some audio libraries (TBD)
-  
+
+## Plan
+
 A quick [Google search recommends](https://www.google.com/search?q=python+mp3+library+voice-to-text+sentence+recognition&oq=python+mp3+library+voice-to-text+sentence+&gs_lcrp=EgZjaHJvbWUqBwgBECEYoAEyBggAEEUYOTIHCAEQIRigATIHCAIQIRigATIHCAMQIRigATIHCAQQIRigATIHCAUQIRigATIHCAYQIRiPAjIHCAcQIRiPAtIBCTcxNDAxajBqN6gCALACAA&sourceid=chrome&ie=UTF-8) the following libraries to hande the speech to text analysis:
 ```
 To perform voice-to-text sentence recognition from an MP3 file in Python, you typically need to combine an audio processing library with a speech recognition library.
@@ -43,3 +45,32 @@ The SpeechRecognition library is a popular choice for Python, providing an inter
     except sr.RequestError as e:
         print(f"Could not request results from Google Speech Recognition service; {e}")
 ```
+
+At a minimum we need the following:
+```
+fastapi // Start with FastAPI
+uvicorn // Minimal low-level server/application interface for async frameworks
+pydub // "Pydub lets you do stuff to audio in a way that isn't stupid."
+speech-recognition // Library for performing speech recognition, with support for several engines and APIs, online and offline.
+python-multipart // SQLite schema: segments(id, file_hash, timestamp, filename_sequence, length_seconds)
+websockets // WebSocket endpoint for real-time audio streaming
+pytest // Unit testing
+pytest-asyncio // Keep it simple for development
+```
+
+## Execution
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
