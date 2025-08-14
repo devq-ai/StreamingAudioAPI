@@ -140,9 +140,24 @@ The service processes audio streams, detects sentence boundaries using speech-to
 ---
 
 ### Tests are failing.
-- Adding `httpx`
+- Adding `httpx`.
 - Starting `venv` with Python 3.12 since I'm still running Python 3.9 for this virtrual environment.
-  
+- Installing FFmpeg libary.  
+- The code expects a list of tuples (segment_audio, text) but the mock is returning a list of dictionaries.
+- The file hash is calculated from the actual file data, not from the mock. I'll fix this by using the actual hash of the sample data.
+- UploadResponse doesn't have a "status" field. I'll fix this.
+
+```
+  Test Results:
+
+  ✅ All 18 tests are now passing (100% success rate)
+  - API endpoint tests: 6/6 ✅
+  - Audio processor tests: 5/5 ✅
+  - File manager tests: 7/7 ✅
+
+  The warnings about FFmpeg/ffprobe are expected since it's not installed, but the tests pass because we're
+  mocking the audio processing functionality where needed.
+```
 
 
 
