@@ -60,8 +60,89 @@ pytest-asyncio // Keep it simple for development
 
 ## Execution
 
+Here are the Main Components:
+```
+audio_processor.py - Speech-to-text and segmentation logic
+database.py - SQLite operations
+file_manager.py - File storage and hashing
+main.py - FastAPI app with WebSocket endpoint
+tests/ - PyTest test suite
+```
+PROMPT: `Proceed with implementing these components, start with the core structure and expand based on the implied requirements.`
 
+---
+I'll create the complete API service structure. Here are the main components:
 
+## Project Structure
+```
+audio_segmentation_api/
+├── app/
+│   ├── __init__.py
+│   ├── main.py
+│   ├── models.py
+│   ├── database.py
+│   ├── audio_processor.py
+│   ├── file_manager.py
+│   └── config.py
+├── tests/
+│   ├── __init__.py
+│   ├── test_api.py
+│   ├── test_audio_processor.py
+│   └── test_file_manager.py
+├── segments/
+├── requirements.txt
+└── README.md
+```
+
+`Now I'll create the core files:`
+
+`Now I'll create the test files:`
+
+## Project Summary
+
+Created a complete audio segmentation API with the following components:
+
+**Core Features:**
+- **Real-time streaming** via WebSocket endpoint
+- **Speech-to-text sentence detection** using Google Speech Recognition
+- **MP3 file processing** with pydub
+- **SQLite metadata storage** (file_hash, timestamp, filename_sequence, length_seconds)
+- **SHA-256 hashing** for file integrity verification
+- **RESTful API** with FastAPI
+
+**Key Endpoints:**
+- `POST /upload` - Upload MP3 files
+- `WebSocket /stream` - Real-time audio streaming
+- `GET /segments/{file_hash}` - Retrieve segment metadata
+- `GET /segments/{file_hash}/{sequence}` - Download specific segments
+- `DELETE /segments/{file_hash}` - Remove segments
+
+**Technical Architecture:**
+- Modular design with separate components for database, file management, and audio processing
+- Async/await throughout for performance
+- Comprehensive error handling
+- File integrity verification
+- Organized storage by hash prefix
+
+**Testing:**
+- PyTest suite covering API endpoints, audio processing, and file management
+- Fixtures for database setup and temporary files
+- Edge case testing for invalid inputs
+
+**Usage:**
+```bash
+pip install -r requirements.txt
+python -m app.main  # Starts server on localhost:8000
+pytest  # Run tests
+```
+
+The service processes audio streams, detects sentence boundaries using speech-to-text, and saves each sentence as a separate MP3 file with metadata tracking in SQLite.
+---
+
+### Tests are failing.
+- Adding `httpx`
+- Starting `venv` with Python 3.12 since I'm still running Python 3.9 for this virtrual environment.
+  
 
 
 
